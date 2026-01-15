@@ -27,7 +27,13 @@
 #include "../../string_compat.h"
 #include <boost/algorithm/string.hpp>
 #include <fstream>
+#if __has_include(<google/protobuf/compiler/cpp/cpp_generator.h>)
 #include <google/protobuf/compiler/cpp/cpp_generator.h>
+#elif __has_include(<google/protobuf/compiler/cpp/generator.h>)
+#include <google/protobuf/compiler/cpp/generator.h>
+#else
+#error "Protobuf C++ generator header not found"
+#endif
 #include <google/protobuf/compiler/plugin.h>
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/io/printer.h>
